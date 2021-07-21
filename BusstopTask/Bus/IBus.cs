@@ -6,10 +6,6 @@ namespace BusstopTask.Bus
     {
         public void Run();
 
-
-
-        //public Station Station{get;set;}
-
-        //public Route Route { get; set; }
+        public string Name { get; }
     }
 }
