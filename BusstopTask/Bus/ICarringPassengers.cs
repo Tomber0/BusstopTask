@@ -7,8 +7,8 @@ namespace BusstopTask.Bus
         
         public int Capacity {get;}
 
-        public void GetPassengers(int passengers);
+        public bool GetPassengers(int passengers);
 
-        public void DropPassengers(int passengers);
+        public bool DropPassengers(int passengers);
     }
 }

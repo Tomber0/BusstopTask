@@ -11,7 +11,12 @@ namespace BusstopTask.Bus
 {
     class Bus : IBus, IStationRouting, IWaitable, ISwappingPassengers
     {
+        public int Direction { get; set; }
+
+        public int Position { get; set; }
+
         public string Name { get; private set; }
+
         public IRoute Route { get; set; }
 
         public IStation CurrentStation { get; set; }
@@ -49,6 +54,7 @@ namespace BusstopTask.Bus
         }
         private int _passengers;
         private int _capacity;
+        
         public void Run()
         {
             
@@ -56,12 +62,19 @@ namespace BusstopTask.Bus
 
         public IStation GetNextStation(IRoute route)
         {
-            throw new NotImplementedException();
+
+            Position += Direction;
+            if (Position>=route.Stations.Count)
+            {
+                Position = 0;
+                //start over
+            }
+            return route.Stations[Position];
         }
 
         public void MoveToStation(IStation station)
         {
-            throw new NotImplementedException();
+            CurrentStation = station;
         }
 
         public void Wait(int time)
@@ -79,20 +92,38 @@ namespace BusstopTask.Bus
             throw new NotImplementedException();
         }
 
-        public void GetPassengers(int passengers)
+        public bool GetPassengers(int passengers)
+        {
+            if (passengers+Passengers<Capacity)
+            {
+                Passengers += passengers;
+                return true;
+            }
+            else
+            {
+                return false;
+
+                //too big
+            }
+        }
+
+        public bool DropPassengers(int passengers)
         {
             throw new NotImplementedException();
         }
 
-        public void DropPassengers(int passengers)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Bus(string name, int capacity) 
+        public Bus(string name, int capacity,int passengers) 
         {
             Name = name;
             Capacity = capacity;
+            Passengers = passengers;
+        }
+
+        public Bus() 
+        {
+            Name = "Bus";
+            Capacity = 10;
+            Passengers = 5;
         }
     }
 }
