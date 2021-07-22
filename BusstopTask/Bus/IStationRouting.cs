@@ -1,14 +1,19 @@
 ﻿//bus can drive between stations
+using BusstopTask.Route;
+using BusstopTask.Station;
+
 namespace BusstopTask.Bus
 {
     interface IStationRouting
     {
-        //IRoute Route {get; set;}
+        public IRoute Route {get; set;}
 
-        //IStation GetNextStation(route)
+        public IStation GetNextStation(IRoute route);
 
-        //IStation CurrentStation
+        public IStation CurrentStation{get;}
 
-        //void MoveToNextStation
+        public void MoveToStation(IStation station);
+
+        
     }
 }
