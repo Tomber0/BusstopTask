@@ -11,6 +11,9 @@ namespace BusstopTask.Bus
 {
     class Bus : IBus, IStationRouting, IWaitable, ISwappingPassengers
     {
+        public delegate void Print(string message);
+        public event Print OnMessage;
+
         public int Direction { get; set; } = 1;
 
         public int Position { get; set; } = 0;
@@ -63,40 +66,43 @@ namespace BusstopTask.Bus
                 lock (ConsolePrinter.GetLock())
                 {
 
-                IStation station;
-                if (Route == null)
-                {
-                    //cant move, no route
-                    //show msg
-                    break;
-                }
-                if (CurrentStation == null)
-                {
-                    Position = -1;
+                    IStation station;
+                    if (Route == null)
+                    {
+                        //cant move, no route
+                        //show msg
+                        OnMessage("");
+                        break;
+                    }
+                    if (CurrentStation == null)
+                    {
+                        Position = -1;
+                        station = GetNextStation(Route);
+                        MoveToStation(station);
+                    }
+                    //aproaching station
+                    int numberToDrop = _random.Next(0, Passengers + 1);
+                    int numberToGet = _random.Next(0, Passengers + 1);
+
+                    Wait(1000);
+                    if (DropPassengers(numberToDrop))
+                    {
+                        CurrentStation.AddPassengers(numberToDrop);
+                    }
+
+                    if (GetPassengers(numberToGet))
+                    {
+                        CurrentStation.RemovePassengers(numberToGet);
+                    }
+
+                    //end lock
+
+                    //after
                     station = GetNextStation(Route);
                     MoveToStation(station);
-                }
-                //aproaching station
-                int numberToDrop = _random.Next(0,Passengers+1);
-                int numberToGet = _random.Next(0,Passengers+1);
 
 
-                if (DropPassengers(numberToDrop))
-                {
-                    CurrentStation.AddPassengers(numberToDrop);
-                }
-
-                if (GetPassengers(numberToGet))
-                {
-                    CurrentStation.RemovePassengers(numberToGet);
-                }
-                
-                //end lock
-
-                //after
-                station = GetNextStation(Route);
-                MoveToStation(station);
-                _counter--;
+                    _counter--;
                 }
             }
 
@@ -163,11 +169,12 @@ namespace BusstopTask.Bus
             }
         }
 
-        public Bus(string name, int capacity,int passengers) 
+        public Bus(string name, int capacity,int passengers,Print printer) 
         {
             Name = name;
             Capacity = capacity;
             Passengers = passengers;
+            OnMessage += printer;
         }
         public Bus() 
         {
