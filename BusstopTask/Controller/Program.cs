@@ -1,5 +1,5 @@
 ﻿using System;
-namespace BusstopTask
+namespace BusstopTask.Controller
 {
     class Program
     {
