@@ -60,6 +60,9 @@ namespace BusstopTask.Bus
         {
             while (_counter>0)
             {
+                lock (ConsolePrinter.GetLock())
+                {
+
                 IStation station;
                 if (Route == null)
                 {
@@ -77,7 +80,6 @@ namespace BusstopTask.Bus
                 int numberToDrop = _random.Next(0,Passengers+1);
                 int numberToGet = _random.Next(0,Passengers+1);
 
-                //lock
 
                 if (DropPassengers(numberToDrop))
                 {
@@ -95,7 +97,9 @@ namespace BusstopTask.Bus
                 station = GetNextStation(Route);
                 MoveToStation(station);
                 _counter--;
+                }
             }
+
         }
 
         public IStation GetNextStation(IRoute route)
