@@ -13,11 +13,11 @@ namespace BusstopTask.Station
         
         public void RemovePassengers(int passengers);
 
-        public List<ISwappingPassengers> Transports { get; }
+        public List<IStationRouting> Transports { get; }
 
-        public void AddTransport(ISwappingPassengers transport);
+        public void AddTransport(IStationRouting transport);
         
-        public void RemoveTransport(ISwappingPassengers transport);
+        public void RemoveTransport(IStationRouting transport);
 
         public int Capacity { get; init; }
     }

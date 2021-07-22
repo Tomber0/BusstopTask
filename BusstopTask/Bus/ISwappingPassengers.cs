@@ -2,7 +2,7 @@
 
 namespace BusstopTask.Bus
 {
-    interface ISwappingPassengers:IStationRouting
+    interface ISwappingPassengers:ICarringPassengers
     {
         public void Send(ISwappingPassengers swapper, int count);
 

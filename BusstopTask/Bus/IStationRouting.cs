@@ -6,14 +6,12 @@ namespace BusstopTask.Bus
 {
     interface IStationRouting
     {
-        public IRoute Route {get; set;}
+        public IRoute Route { get; set; }
 
         public IStation GetNextStation(IRoute route);
 
-        public IStation CurrentStation{get;}
+        public IStation CurrentStation { get; }
 
         public void MoveToStation(IStation station);
-
-        
-    }
+   }
 }
