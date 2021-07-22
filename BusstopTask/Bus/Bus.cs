@@ -102,6 +102,9 @@ namespace BusstopTask.Bus
                         OnMessage($"Bus {Name} have gotten {numberToGet} passengers");
                     }
 
+                    //add swap
+
+
                     //end lock
 
                     //after

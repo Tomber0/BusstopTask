@@ -15,7 +15,7 @@ namespace BusstopTask.Station
 
         public List<IStationRouting> Transports { get; }
 
-        public void AddTransport(IStationRouting transport);
+        public bool AddTransport(IStationRouting transport);
         
         public void RemoveTransport(IStationRouting transport);
 
