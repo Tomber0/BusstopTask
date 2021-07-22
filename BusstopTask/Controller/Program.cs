@@ -15,15 +15,15 @@ namespace BusstopTask.Controller
             ConsolePrinter printer = new ConsolePrinter();
             Route route1 = new Route("Route 1");
 
-            Station station1 = new Station("Station 1",3, 10);
-            Station station2 = new Station("Station 2",3, 10);
+            Station station1 = new Station("Station 1",3, 15);
+            Station station2 = new Station("Station 2",3, 7);
             Station station3 = new Station("Station 3",4, 10);
 
 
-            Bus bus1 = new Bus("Bus 1", 4, 0, printer.Print);
-            Bus bus2 = new Bus("Bus 2", 5, 0, printer.Print);
-            Bus bus3 = new Bus("Bus 3", 6, 0, printer.Print);
-            Bus bus4 = new Bus("Bus 4", 3, 0, printer.Print);
+            Bus bus1 = new Bus("Bus 1", 10, 3, printer.Print);
+            Bus bus2 = new Bus("Bus 2", 10, 2, printer.Print);
+            Bus bus3 = new Bus("Bus 3", 10, 4, printer.Print);
+            Bus bus4 = new Bus("Bus 4", 10, 1, printer.Print);
 
             bus1.Route = route1;
             bus2.Route = route1;
