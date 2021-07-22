@@ -8,8 +8,5 @@ namespace BusstopTask
 {
     interface IPrinter
     {
-        public void Print(string message);
-
-        public void Print(string message,ConsoleColor color);
     }
 }
