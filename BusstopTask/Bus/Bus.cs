@@ -11,9 +11,9 @@ namespace BusstopTask.Bus
 {
     class Bus : IBus, IStationRouting, IWaitable, ISwappingPassengers
     {
-        public int Direction { get; set; }
+        public int Direction { get; set; } = 1;
 
-        public int Position { get; set; }
+        public int Position { get; set; } = 0;
 
         public string Name { get; private set; }
 
@@ -54,16 +54,54 @@ namespace BusstopTask.Bus
         }
         private int _passengers;
         private int _capacity;
-        
+        private Random _random = new Random();
+        private int _counter = 1000000;
         public void Run()
         {
-            
+            while (_counter>0)
+            {
+                IStation station;
+                if (Route == null)
+                {
+                    //cant move, no route
+                    //show msg
+                    break;
+                }
+                if (CurrentStation == null)
+                {
+                    Position = -1;
+                    station = GetNextStation(Route);
+                    MoveToStation(station);
+                }
+                //aproaching station
+                int numberToDrop = _random.Next(0,Passengers+1);
+                int numberToGet = _random.Next(0,Passengers+1);
+
+                //lock
+
+                if (DropPassengers(numberToDrop))
+                {
+                    CurrentStation.AddPassengers(numberToDrop);
+                }
+
+                if (GetPassengers(numberToGet))
+                {
+                    CurrentStation.RemovePassengers(numberToGet);
+                }
+                
+                //end lock
+
+                //after
+                station = GetNextStation(Route);
+                MoveToStation(station);
+                _counter--;
+            }
         }
 
         public IStation GetNextStation(IRoute route)
         {
 
-            Position += Direction;
+            Position += 1;//Direction;
             if (Position>=route.Stations.Count)
             {
                 Position = 0;
@@ -102,14 +140,23 @@ namespace BusstopTask.Bus
             else
             {
                 return false;
-
                 //too big
             }
         }
 
         public bool DropPassengers(int passengers)
         {
-            throw new NotImplementedException();
+            if (Passengers - passengers < 0 )
+            {
+                
+                return false;
+                //too low
+            }
+            else
+            {
+                Passengers -= passengers;
+                return true;
+            }
         }
 
         public Bus(string name, int capacity,int passengers) 
@@ -118,7 +165,6 @@ namespace BusstopTask.Bus
             Capacity = capacity;
             Passengers = passengers;
         }
-
         public Bus() 
         {
             Name = "Bus";
