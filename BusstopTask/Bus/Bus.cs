@@ -71,14 +71,18 @@ namespace BusstopTask.Bus
                     {
                         //cant move, no route
                         //show msg
-                        OnMessage("");
+                        OnMessage($"Bus {Name} have no route!\nBus have lost");
                         break;
                     }
                     if (CurrentStation == null)
                     {
+                        OnMessage($"Bus {Name} on no station!");
+
                         Position = -1;
                         station = GetNextStation(Route);
                         MoveToStation(station);
+                        Wait(1000);
+                        OnMessage($"Bus {Name} have moved to {station.Name}");
                     }
                     //aproaching station
                     int numberToDrop = _random.Next(0, Passengers + 1);
@@ -88,20 +92,25 @@ namespace BusstopTask.Bus
                     if (DropPassengers(numberToDrop))
                     {
                         CurrentStation.AddPassengers(numberToDrop);
+                        OnMessage($"Bus {Name} have dropped {numberToDrop} passengers");
+
                     }
 
                     if (GetPassengers(numberToGet))
                     {
                         CurrentStation.RemovePassengers(numberToGet);
+                        OnMessage($"Bus {Name} have gotten {numberToGet} passengers");
                     }
 
                     //end lock
 
                     //after
+                    OnMessage($"Bus {Name} moving to next station");
                     station = GetNextStation(Route);
+                    OnMessage($"Bus {Name}: next station is {station}");
                     MoveToStation(station);
-
-
+                    OnMessage($"Bus {Name} moving to {station}");
+                    Wait(2500);
                     _counter--;
                 }
             }
