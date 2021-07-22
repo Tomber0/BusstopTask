@@ -1,10 +1,10 @@
 ﻿
 //
-using BusstopTask.Bus;
-using BusstopTask.Station;
+using BusstopTask.Model.Bus;
+using BusstopTask.Model.Station;
 using System.Collections.Generic;
 
-namespace BusstopTask.Route
+namespace BusstopTask.Model.Route
 {
     interface IRoute
     {

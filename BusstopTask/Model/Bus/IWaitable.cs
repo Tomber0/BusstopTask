@@ -1,5 +1,5 @@
 ﻿
-namespace BusstopTask.Bus
+namespace BusstopTask.Model.Bus
 {
     interface IWaitable
     {

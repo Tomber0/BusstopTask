@@ -1,13 +1,13 @@
-﻿using BusstopTask.Route;
-using BusstopTask.Station;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using BusstopTask.Model.Route;
+using BusstopTask.Model.Station;
 
-namespace BusstopTask.Bus
+namespace BusstopTask.Model.Bus
 {
     class Bus : IBus, IStationRouting, IWaitable, ISwappingPassengers
     {

@@ -1,8 +1,8 @@
 ﻿//bus can drive between stations
-using BusstopTask.Route;
-using BusstopTask.Station;
+using BusstopTask.Model.Route;
+using BusstopTask.Model.Station;
 
-namespace BusstopTask.Bus
+namespace BusstopTask.Model.Bus
 {
     interface IStationRouting
     {

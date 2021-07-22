@@ -1,5 +1,5 @@
 ﻿//Can carry passengers
-namespace BusstopTask.Bus
+namespace BusstopTask.Model.Bus
 {
     interface ICarringPassengers
     {

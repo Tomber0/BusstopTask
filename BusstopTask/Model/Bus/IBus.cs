@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BusstopTask.Bus
+namespace BusstopTask.Model.Bus
 {
     interface IBus
     {

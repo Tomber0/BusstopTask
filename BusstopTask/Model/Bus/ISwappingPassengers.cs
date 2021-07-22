@@ -1,6 +1,6 @@
 ﻿//can swap passengers with others
 
-namespace BusstopTask.Bus
+namespace BusstopTask.Model.Bus
 {
     interface ISwappingPassengers:ICarringPassengers
     {

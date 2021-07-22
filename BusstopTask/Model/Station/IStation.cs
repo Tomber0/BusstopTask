@@ -1,7 +1,7 @@
-﻿using BusstopTask.Bus;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using BusstopTask.Model.Bus;
 
-namespace BusstopTask.Station
+namespace BusstopTask.Model.Station
 {
     interface IStation
     {

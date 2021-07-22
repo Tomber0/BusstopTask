@@ -1,5 +1,4 @@
 ﻿using System;
-
 namespace BusstopTask
 {
     class Program
