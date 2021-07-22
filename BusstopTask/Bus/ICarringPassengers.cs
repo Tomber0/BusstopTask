@@ -4,6 +4,8 @@ namespace BusstopTask.Bus
     interface ICarringPassengers
     {
         public int Passengers {get;}
+        
+        public int Capacity {get;}
 
         public void GetPassengers(int passengers);
 

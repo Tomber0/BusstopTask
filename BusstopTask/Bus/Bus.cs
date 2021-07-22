@@ -6,7 +6,18 @@ using System.Threading.Tasks;
 
 namespace BusstopTask.Bus
 {
-    class Bus:IBus,IStationRouting,IWaitable,ISwappingPassengers
+    class Bus : IBus, IStationRouting, IWaitable, ISwappingPassengers
     {
+        public string Name { get; private set; }
+
+        public void Run()
+        {
+            
+        }
+
+        public Bus(string name, int capacity) 
+        {
+        
+        }
     }
 }
