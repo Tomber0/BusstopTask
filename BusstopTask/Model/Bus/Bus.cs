@@ -35,7 +35,7 @@ namespace BusstopTask.Model.Bus
             }
             set
             {
-                if (_passengers > 0)
+                if (value > 0)
                 {
                     _passengers = value;
                 }
@@ -50,7 +50,7 @@ namespace BusstopTask.Model.Bus
             } 
             set 
             {
-                if (_capacity>0)
+                if (value>0)
                 {
                     _capacity = value;
                 }
@@ -86,7 +86,7 @@ namespace BusstopTask.Model.Bus
                     }
                     //aproaching station
                     int numberToDrop = _random.Next(0, Passengers + 1);
-                    int numberToGet = _random.Next(0, Passengers + 1);
+                    int numberToGet = _random.Next(0, CurrentStation.Passengers + 1);//bug
 
                     Wait(100);
                     if (DropPassengers(numberToDrop))

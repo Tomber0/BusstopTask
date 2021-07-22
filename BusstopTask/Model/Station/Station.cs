@@ -17,7 +17,7 @@ namespace BusstopTask.Model.Station
             }
             set
             {
-                if (_passengers > 0)
+                if (value > 0)
                 {
                     _passengers = value;
                 }
