@@ -66,7 +66,6 @@ namespace BusstopTask.Model.Bus
             {
                 lock (ConsolePrinter.GetLock())
                 {
-
                     IStation station;
                     if (Route == null)
                     {
@@ -82,18 +81,19 @@ namespace BusstopTask.Model.Bus
                         Position = -1;
                         station = GetNextStation(Route);
                         MoveToStation(station);
-                        Wait(1000);
+                        Wait(100);
                         OnMessage($"Bus {Name} have moved to {station.Name}");
                     }
                     //aproaching station
                     int numberToDrop = _random.Next(0, Passengers + 1);
                     int numberToGet = _random.Next(0, Passengers + 1);
 
-                    Wait(1000);
+                    Wait(100);
                     if (DropPassengers(numberToDrop))
                     {
                         CurrentStation.AddPassengers(numberToDrop);
                         OnMessage($"Bus {Name} have dropped {numberToDrop} passengers");
+                        Wait(250);
 
                     }
 
@@ -101,6 +101,8 @@ namespace BusstopTask.Model.Bus
                     {
                         CurrentStation.RemovePassengers(numberToGet);
                         OnMessage($"Bus {Name} have gotten {numberToGet} passengers");
+                        Wait(250);
+
                     }
 
                     //add swap
@@ -109,14 +111,20 @@ namespace BusstopTask.Model.Bus
                     //end lock
 
                     //after
+
                     OnMessage($"Bus {Name} moving to next station");
+                    Wait(250);
+
                     station = GetNextStation(Route);
-                    OnMessage($"Bus {Name}: next station is {station}");
+                    OnMessage($"Bus {Name}: next station is {station.Name}");
+                    Wait(250);
                     MoveToStation(station);
-                    OnMessage($"Bus {Name} moving to {station}");
-                    Wait(2500);
+                    OnMessage($"Bus {Name} moving to {station.Name}");
+                    Wait(250);
                     _counter--;
                 }
+                Wait(250);
+
             }
 
         }

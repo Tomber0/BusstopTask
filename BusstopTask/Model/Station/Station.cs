@@ -58,5 +58,12 @@ namespace BusstopTask.Model.Station
         {
             Transports.Remove(transport);
         }
+
+        public Station(string name, int capacity, int passengers) 
+        {
+            Name = name;
+            Capacity = capacity;
+            Passengers = passengers;
+        }
     }
 }

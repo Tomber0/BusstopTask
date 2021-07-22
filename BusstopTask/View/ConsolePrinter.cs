@@ -8,7 +8,7 @@ namespace BusstopTask.View
 {
     class ConsolePrinter:Printer
     {
-        public static object locker;
+        public static object locker = new object();
 
         public static object GetLock() 
         {

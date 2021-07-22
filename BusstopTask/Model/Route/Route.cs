@@ -9,6 +9,8 @@ namespace BusstopTask.Model.Route
         public Route(string name) 
         {
             Name = name;
+            Transports = new List<IStationRouting>();
+            Stations = new List<IStation>();
         }
 
         public string Name { get; set; }
