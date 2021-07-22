@@ -4,7 +4,7 @@ namespace BusstopTask.Bus
 {
     interface ISwappingPassengers:IStationRouting
     {
-        public void Swap(ISwappingPassengers swapper, int count);
+        public void Send(ISwappingPassengers swapper, int count);
 
         public ISwappingPassengers FindSwapping();
 
