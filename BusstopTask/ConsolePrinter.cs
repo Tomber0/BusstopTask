@@ -6,17 +6,18 @@ using System.Threading.Tasks;
 
 namespace BusstopTask
 {
-    class ConsolePrinter 
+    class ConsolePrinter:Printer
     {
-        public static void Print(string message)
-        {
-            Console.WriteLine(message);
-        }
         public static object locker;
 
         public static object GetLock() 
         {
             return locker;
+        }
+
+        public override void Print(string message)
+        {
+            Console.WriteLine(message);
         }
     }
 }

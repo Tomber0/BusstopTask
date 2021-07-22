@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace BusstopTask
 {
-    interface IPrinter
+    public abstract class Printer
     {
+        public abstract void Print(string message);
     }
 }
